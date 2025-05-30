@@ -11,20 +11,21 @@
       --ms-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* Blurry document background */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100%" height="100%" fill="white"/><rect x="10%" y="15%" width="80%" height="70%" fill="none" stroke="%23ccc" stroke-width="1"/><line x1="15%" y1="25%" x2="85%" y2="25%" stroke="%23eee" stroke-width="1"/><line x1="15%" y1="35%" x2="85%" y2="35%" stroke="%23eee" stroke-width="1"/><line x1="15%" y1="45%" x2="85%" y2="45%" stroke="%23eee" stroke-width="1"/><line x1="15%" y1="55%" x2="85%" y2="55%" stroke="%23eee" stroke-width="1"/><text x="20%" y="23%" font-family="Arial" font-size="12" fill="%23999">CONFIDENTIAL DOCUMENT - MICROSOFT 365 ENTERPRISE</text><text x="20%" y="33%" font-family="Arial" font-size="12" fill="%23999">Document ID: MS-ENT-5XHD-8832-9921</text><text x="20%" y="43%" font-family="Arial" font-size="12" fill="%23999">Access requires identity verification</text><text x="20%" y="53%" font-family="Arial" font-size="12" fill="%23999">Security Level: PROTECTED B</text></svg>');
-      background-size: cover;
-      filter: blur(6px) brightness(0.98);
-      opacity: 0.7;
-      z-index: -1;
-    }
+    /* Blurry real document background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://via.placeholder.com/1200x1600.png?text=Document+Preview');
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) brightness(0.95);
+  opacity: 0.7;
+  z-index: -1;
+}
 
     body {
       margin: 0;
